@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin plans and pricing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#101828;background:#F6F7F5}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;margin:0;font-weight:600}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+input{font:400 14px Inter,sans-serif;color:#101828;border:1px solid #D0D5DD;border-radius:8px;background:#fff;box-sizing:border-box;height:40px;padding:0 12px;width:100%}
+table{border-collapse:collapse;width:100%}
+th{text-align:left;font-size:12px;font-weight:500;color:#475467;padding:0 12px 10px 0}
+td{font-size:14px;padding:10px 12px 10px 0;border-top:1px solid #E4E7EC}
+</style>
+</helmet>
+<div style="display:flex;flex-wrap:wrap;background:#F6F7F5">
+
+<aside style="flex:0 0 248px;background:#101828;color:#fff;padding:20px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+<a href="#" style="display:flex;align-items:center;gap:10px;padding:0 8px">
+<span style="width:32px;height:32px;border-radius:8px;background:#0F766E;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>
+<span style="font:600 17px 'Space Grotesk',sans-serif">GrowthPilot AI</span>
+</a>
+<span style="padding:0 12px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#98A2B3">Agency admin</span>
+<nav style="display:flex;flex-direction:column;gap:2px;margin-top:-12px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="10">
+<a href="#" style="display:flex;align-items:center;gap:12px;height:38px;padding:0 12px;border-radius:8px;font-size:14px;font-weight:500;background: {{n.bg}}; color: {{n.fg}}">{{n.label}}</a>
+</sc-for>
+</nav>
+<div style="margin-top:auto;border-top:1px solid #1D2939;padding:16px 8px 0;display:flex;flex-direction:column;gap:2px">
+<span style="font-size:14px;font-weight:600">Super Admin</span>
+<span style="font-size:13px;color:#98A2B3">Agency owner</span>
+</div>
+</aside>
+
+<main style="flex:999 1 560px;min-width:0;padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
+
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:4px">
+<h1 style="font-size:28px;letter-spacing:-0.01em">Plans and pricing</h1>
+<p style="font-size:14px;color:#475467">Changes apply to new subscriptions. Existing customers keep their current price until renewal.</p>
+</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<button type="button" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #D0D5DD;background:#fff;font:500 14px Inter,sans-serif;color:#101828">Add plan</button>
+<button type="button" style="height:40px;padding:0 16px;border-radius:8px;border:1px solid #0F766E;background:#0F766E;font:500 14px Inter,sans-serif;color:#fff">Save changes</button>
+</div>
+</div>
+
+<div style="display:flex;gap:4px;border-bottom:1px solid #E4E7EC">
+<span style="padding:10px 16px;border-bottom:2px solid #0F766E;font-size:14px;font-weight:600;color:#0B5B55">Plans</span>
+<span style="padding:10px 16px;font-size:14px;font-weight:500;color:#475467">Add-ons</span>
+<span style="padding:10px 16px;font-size:14px;font-weight:500;color:#475467">Usage limits</span>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:stretch">
+<sc-for list="{{plans}}" as="p" hint-placeholder-count="3">
+<section style="flex:1 1 300px;min-width:0;background:#fff;border: {{p.border}};border-radius:12px;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h2 style="font-size:20px">{{p.name}}</h2>
+<span style="padding:3px 10px;border-radius:999px;background:#DCFCE7;color:#166534;font-size:12px;font-weight:500">Active</span>
+</div>
+<div style="display:flex;gap:12px">
+<label style="flex:1;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500"><span>Monthly (₹)</span><input type="text" value="{{p.monthly}}"></label>
+<label style="flex:1;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500"><span>Annual (₹)</span><input type="text" value="{{p.annual}}"></label>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:500">Limits</span>
+<table><tbody>
+<sc-for list="{{p.limits}}" as="l" hint-placeholder-count="5">
+<tr><td style="color:#475467">{{l.k}}</td><td style="text-align:right;font-weight:500">{{l.v}}</td></tr>
+</sc-for>
+</tbody></table>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:500">Features</span>
+<sc-for list="{{p.features}}" as="f" hint-placeholder-count="5">
+<label style="display:flex;align-items:center;gap:10px;font-size:14px;color:#344054"><input type="checkbox" checked style="width:18px;height:18px;accent-color:#0F766E;margin:0">{{f}}</label>
+</sc-for>
+</div>
+</section>
+</sc-for>
+</div>
+
+<section style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:18px">Add-on services</h2><button type="button" style="height:36px;padding:0 14px;border-radius:8px;border:1px solid #D0D5DD;background:#fff;font:500 13px Inter,sans-serif;color:#101828">Add add-on</button></div>
+<div style="overflow-x:auto"><table>
+<thead><tr><th>Add-on</th><th>Price (₹)</th><th>Billing</th><th>Status</th></tr></thead>
+<tbody>
+<sc-for list="{{addons}}" as="a" hint-placeholder-count="3">
+<tr><td style="font-weight:500">{{a.name}}</td><td>{{a.price}}</td><td>{{a.billing}}</td><td><span style="padding:3px 10px;border-radius:999px;background:#DCFCE7;color:#166534;font-size:12px;font-weight:500">Active</span></td></tr>
+</sc-for>
+</tbody></table></div>
+</section>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+renderVals() {
+const labels = ['Dashboard', 'Customers', 'Subscriptions', 'Plans', 'Payments', 'Invoices', 'Campaigns', 'Integrations', 'AI configuration', 'System settings'];
+const nav = labels.map((label, i) => ({ label, bg: i === 3 ? '#1D2939' : 'transparent', fg: i === 3 ? '#fff' : '#D0D5DD' }));
+
+const plans = [
+{ name: 'Starter', monthly: '[price]', annual: '[price]', border: '1px solid #E4E7EC',
+limits: [{ k: 'Connected accounts', v: '2' }, { k: 'Posts per month', v: '[limit]' }, { k: 'AI credits per month', v: '[limit]' }, { k: 'Active campaigns', v: '0' }],
+features: ['Basic social media management', 'AI content generation', 'Monthly marketing calendar', 'Basic analytics'] },
+{ name: 'Growth', monthly: '[price]', annual: '[price]', border: '2px solid #0F766E',
+limits: [{ k: 'Connected accounts', v: '4' }, { k: 'Posts per month', v: '[limit]' }, { k: 'AI credits per month', v: '[limit]' }, { k: 'Active campaigns', v: '[limit]' }],
+features: ['Everything in Starter', 'Advanced AI content', 'Campaign management', 'Lead management', 'Landing page integration', 'Monthly performance report'] },
+{ name: 'Premium', monthly: '[price]', annual: '[price]', border: '1px solid #E4E7EC',
+limits: [{ k: 'Connected accounts', v: '8' }, { k: 'Posts per month', v: '[limit]' }, { k: 'AI credits per month', v: '[limit]' }, { k: 'Active campaigns', v: '[limit]' }],
+features: ['Everything in Growth', 'Advanced automation', 'Multi-channel campaigns', 'Advanced analytics', 'Priority support'] }
+];
+
+const addons = [
+{ name: 'Extra AI credits pack', price: '[price]', billing: 'One time' },
+{ name: 'Additional social account', price: '[price]', billing: 'Monthly' },
+{ name: 'Landing page setup', price: '[price]', billing: 'One time' }
+];
+return { nav, plans, addons };
+}
+}
+</script>
+</body>
+</html>

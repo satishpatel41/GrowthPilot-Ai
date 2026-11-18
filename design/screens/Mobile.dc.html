@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Customer dashboard on mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#101828;background:#F6F7F5}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;margin:0;font-weight:600}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;background:#F6F7F5">
+
+<header style="height:60px;flex:0 0 60px;background:#fff;border-bottom:1px solid #E4E7EC;padding:0 16px;display:flex;align-items:center;justify-content:space-between">
+<a href="#" style="display:flex;align-items:center;gap:8px">
+<span style="width:28px;height:28px;border-radius:7px;background:#0F766E;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>
+<span style="font:600 16px 'Space Grotesk',sans-serif">GrowthPilot AI</span>
+</a>
+<button type="button" aria-label="Notifications" style="width:44px;height:44px;border-radius:10px;border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#344054" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></button>
+</header>
+
+<main style="flex:1 1 auto;min-height:0;overflow:hidden;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+
+<div style="display:flex;flex-direction:column;gap:2px">
+<h1 style="font-size:24px;letter-spacing:-0.01em">Dashboard</h1>
+<p style="font-size:13px;color:#475467">Shree Textile House · sample data</p>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div style="background: {{k.bg}}; border: {{k.border}}; border-radius:12px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:4px;min-height:96px">
+<span style="font-size:12px;font-weight:500;color:#475467">{{k.label}}</span>
+<span style="font:600 {{k.size}} 'Space Grotesk',sans-serif;color: {{k.color}}">{{k.value}}</span>
+<span style="font-size:11px;line-height:1.35;color:#475467">{{k.note}}</span>
+</div>
+</sc-for>
+</div>
+
+<section style="background:#fff;border:1px solid #E4E7EC;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h2 style="font-size:16px">Needs your approval</h2>
+<span style="padding:2px 8px;border-radius:999px;background:#FEF3C7;color:#92400E;font-size:11px;font-weight:500">3 pending</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<span style="font-size:14px;font-weight:500">Festival offer reel</span>
+<span style="font-size:12px;color:#475467">Instagram and Facebook · Fri 6:30 PM</span>
+</div>
+<div style="display:flex;gap:8px">
+<button type="button" style="flex:1;height:44px;border-radius:8px;border:1px solid #0F766E;background:#0F766E;font:500 14px Inter,sans-serif;color:#fff">Approve</button>
+<button type="button" style="flex:1;height:44px;border-radius:8px;border:1px solid #D0D5DD;background:#fff;font:500 14px Inter,sans-serif;color:#101828">Review</button>
+</div>
+<div style="border-top:1px solid #E4E7EC;padding-top:10px;display:flex;justify-content:space-between;font-size:13px"><span>Wedding collection post</span><a href="#" style="color:#0B5B55;font-weight:500">Review</a></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>Customer thank-you</span><a href="#" style="color:#0B5B55;font-weight:500">Review</a></div>
+</section>
+
+</main>
+
+<nav style="flex:0 0 68px;height:68px;background:#fff;border-top:1px solid #E4E7EC;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<a href="#" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px;font-weight:500;color: {{t.color}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.d}}"/></svg><span>{{t.label}}</span></a>
+</sc-for>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+const kpis = [
+{ label: 'Total leads', value: '184', size: '26px', color: '#101828', bg: '#fff', border: '1px solid #E4E7EC', note: '+18% vs earlier' },
+{ label: 'New this week', value: '31', size: '26px', color: '#101828', bg: '#fff', border: '1px solid #E4E7EC', note: 'All sources' },
+{ label: 'Ad spend', value: '₹24,600', size: '22px', color: '#101828', bg: '#fff', border: '1px solid #E4E7EC', note: 'From Meta Ads' },
+{ label: 'Cost per lead', value: 'Unavailable', size: '16px', color: '#475467', bg: '#fff', border: '1px dashed #98A2B3', note: 'Needs a connected ad account' }
+];
+const items = [
+['Home', 'M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z'],
+['Calendar', 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z'],
+['AI', 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z'],
+['Leads', 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8'],
+['More', 'M5 12h.01M12 12h.01M19 12h.01']
+];
+const tabs = items.map(([label, d], i) => ({ label, d, color: i === 0 ? '#0F766E' : '#475467' }));
+return { kpis, tabs };
+}
+}
+</script>
+</body>
+</html>

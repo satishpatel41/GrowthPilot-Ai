@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Customer onboarding business profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&family=Noto+Sans+Gujarati:wght@400;500&display=swap">
+<style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#101828;background:#F6F7F5}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;margin:0;font-weight:600}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+input,select,textarea{font:400 15px Inter,sans-serif;color:#101828;border:1px solid #D0D5DD;border-radius:8px;background:#fff;box-sizing:border-box;width:100%}
+input,select{height:44px;padding:0 12px}
+textarea{padding:10px 12px;resize:none}
+</style>
+</helmet>
+<div style="background:#F6F7F5">
+
+<header style="background:#fff;border-bottom:1px solid #E4E7EC">
+<div style="max-width:1200px;margin:0 auto;padding:0 32px;height:72px;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+<a href="#" style="display:flex;align-items:center;gap:10px">
+<span style="width:32px;height:32px;border-radius:8px;background:#0F766E;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span>
+<span style="font:600 18px 'Space Grotesk',sans-serif">GrowthPilot AI</span>
+</a>
+<a href="#" style="font-size:14px;font-weight:500;color:#344054">Save and finish later</a>
+</div>
+</header>
+
+<main style="max-width:1200px;margin:0 auto;padding:40px 32px 48px;box-sizing:border-box;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+
+<aside style="flex:0 0 280px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<h1 style="font-size:24px;letter-spacing:-0.01em">Set up your business</h1>
+<p style="font-size:14px;color:#475467">1 of 6 steps complete</p>
+<div style="height:6px;border-radius:999px;background:#E4E7EC"><div style="width:17%;height:6px;border-radius:999px;background:#0F766E"></div></div>
+</div>
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="6">
+<li style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;background: {{s.rowBg}}">
+<span style="width:28px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex:0 0 28px;background: {{s.dotBg}}; color: {{s.dotFg}}; border: {{s.dotBorder}}">
+<sc-if value="{{s.done}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></sc-if>
+<sc-if value="{{s.notDone}}" hint-placeholder-val="{{ true }}">{{s.n}}</sc-if>
+</span>
+<span style="font-size:14px;font-weight: {{s.weight}}; color: {{s.color}}">{{s.label}}</span>
+</li>
+</sc-for>
+</ol>
+<div style="border:1px solid #E4E7EC;background:#fff;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:14px">Why we ask</h3>
+<p style="font-size:13px;line-height:1.55;color:#475467">After the last step, GrowthPilot AI drafts a marketing strategy from this profile. You review it before anything is published.</p>
+</div>
+</aside>
+
+<section style="flex:999 1 560px;min-width:0;background:#fff;border:1px solid #E4E7EC;border-radius:16px;padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="font-size:13px;font-weight:500;color:#0F766E">Step 2 of 6</p>
+<h2 style="font-size:28px;letter-spacing:-0.01em">Tell us about your business</h2>
+<p style="font-size:15px;color:#475467">We use this to write in your voice and reach the right people.</p>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<label style="flex:1 1 260px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Business name</span><input type="text" value="Shree Textile House" autocomplete="organization"></label>
+<label style="flex:1 1 260px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Business category</span><select><option>Retail</option><option>Restaurant</option><option>Salon and wellness</option><option>Real estate</option><option>Clinic</option><option>Coaching</option></select></label>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<label style="flex:1 1 260px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Industry</span><input type="text" value="Clothing and textiles"></label>
+<label style="flex:1 1 260px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Website (optional)</span><input type="url" placeholder="https://"></label>
+</div>
+
+<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Business description</span><textarea rows="4">Family-run store with fabrics and ready-made clothing, serving customers in the city for many years.</textarea></label>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<label style="flex:1 1 260px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Target audience</span><input type="text" value="Families and wedding shoppers, ages 25 to 55"></label>
+<label style="flex:1 1 260px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Target location</span><input type="text" value="Surat and nearby towns"></label>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:14px;font-weight:500">Preferred content language</span>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button type="button" style="height:40px;padding:0 18px;border-radius:8px;border:1px solid #D0D5DD;background:#fff;font:500 14px Inter,sans-serif;color:#344054">English</button>
+<button type="button" style="height:40px;padding:0 18px;border-radius:8px;border:1px solid #0F766E;background:#E6F4F1;font:500 14px 'Noto Sans Gujarati',Inter,sans-serif;color:#0B5B55">ગુજરાતી</button>
+<button type="button" style="height:40px;padding:0 18px;border-radius:8px;border:1px solid #D0D5DD;background:#fff;font:500 14px Inter,sans-serif;color:#344054">हिन्दी</button>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px">
+<label style="flex:1 1 160px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>City</span><input type="text" value="Surat"></label>
+<label style="flex:1 1 160px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>State</span><input type="text" value="Gujarat"></label>
+<label style="flex:1 1 160px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500"><span>Country</span><input type="text" value="India"></label>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid #E4E7EC;padding-top:24px">
+<button type="button" style="height:44px;padding:0 20px;border-radius:8px;border:1px solid #D0D5DD;background:#fff;font:500 14px Inter,sans-serif;color:#101828">Back</button>
+<button type="button" style="height:44px;padding:0 24px;border-radius:8px;border:1px solid #0F766E;background:#0F766E;font:500 14px Inter,sans-serif;color:#fff">Save and continue</button>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+renderVals() {
+const labels = ['Account', 'Business profile', 'Brand and voice', 'Marketing goals', 'Locations', 'Choose a plan'];
+const current = 1;
+const steps = labels.map((label, i) => {
+const done = i < current;
+const on = i === current;
+return {
+n: i + 1,
+label,
+done,
+notDone: !done,
+rowBg: on ? '#E6F4F1' : 'transparent',
+dotBg: done ? '#0F766E' : on ? '#fff' : '#fff',
+dotFg: on ? '#0F766E' : '#475467',
+dotBorder: done ? '1px solid #0F766E' : on ? '2px solid #0F766E' : '1px solid #D0D5DD',
+weight: on ? 600 : 500,
+color: on ? '#0B5B55' : '#344054'
+};
+});
+return { steps };
+}
+}
+</script>
+</body>
+</html>
