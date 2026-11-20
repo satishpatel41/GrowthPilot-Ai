@@ -1,0 +1,12 @@
+{
+  "name": "growthpilot",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.28.0",
+  "scripts": {
+    "dev:api": "pnpm --filter @growthpilot/api start:dev",
+    "dev:web": "pnpm --filter @growthpilot/web dev",
+    "test": "pnpm --filter @growthpilot/api test",
+    "build": "pnpm -r build"
+  }
+}
